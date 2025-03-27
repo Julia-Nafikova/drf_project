@@ -156,3 +156,4 @@ REST_FRAMEWORK = {
     ),
 }
 
+STRIPE_APIKEY = os.getenv('STRIPE_APIKEY')
