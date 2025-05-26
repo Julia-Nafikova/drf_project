@@ -20,3 +20,4 @@ django-celery-beat==2.7.0
 pytz==2024.2
 django-redis==5.4.0
 gunicorn==23.0.0
+django-phonenumbers==1.0.1
