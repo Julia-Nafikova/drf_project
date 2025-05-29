@@ -81,17 +81,17 @@ class SubscriptionAPITestCase(APITestCase):
         self.client.force_authenticate(user=self.user)
 
     def test_subscribe(self):
-        url = reverse("lms:subscription", args=(self.course.pk,))
-        response = self.client.post(url)
+        url = reverse("lms:subscription")
+        response = self.client.post(url, {"course":self.course.pk})
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(data.get("message"), "Подписка добавлена")
 
     def test_unsubscribe(self):
-        url = reverse("lms:subscription", args=(self.course.pk,))
-        self.client.post(url)
-        url = reverse("lms:subscription", args=(self.course.pk,))
-        response = self.client.post(url)
+        url = reverse("lms:subscription")
+        self.client.post(url, {"course":self.course.pk})
+        url = reverse("lms:subscription")
+        response = self.client.post(url, {"course":self.course.pk})
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(data.get("message"), "Подписка удалена")
